@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Use `chakra-ui` for fast deveopment.
 - Use `navigator.onLine` to detect whether user is online.
 
-## Deploy on Github pages
+## Deploy on Github Pages
 
 https://lch9487.github.io/jkopay-hw
 
