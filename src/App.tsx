@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider, Box, useToast } from "@chakra-ui/react";
+import ProductDetailPage from "./ProductDetail";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MOBILE_WIDTH } from "./constants";
+import { useEffect, useState } from "react";
 
-function App() {
+const queryClient = new QueryClient();
+
+export default function App() {
+  const toast = useToast();
+  const [, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    function onlineHandler() {
+      setIsOnline(true);
+    }
+
+    function offlineHandler() {
+      setIsOnline(false);
+
+      toast({
+        title: "請確認是否有連上網路",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+
+    window.addEventListener("online", onlineHandler);
+    window.addEventListener("offline", offlineHandler);
+
+    return () => {
+      window.removeEventListener("online", onlineHandler);
+      window.removeEventListener("offline", offlineHandler);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        {/* This is simulated mobile version. */}
+        <Box maxWidth={MOBILE_WIDTH}>
+          <ProductDetailPage />
+        </Box>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
-
-export default App;
