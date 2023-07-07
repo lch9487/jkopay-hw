@@ -1,6 +1,7 @@
 {
   "name": "jkopay-hw",
   "version": "0.1.0",
+  "homepage": "https://lch9487.github.io/jkopay-hw",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
@@ -25,6 +26,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -50,5 +53,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }

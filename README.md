@@ -20,6 +20,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deploy on Github pages
 
+https://lch9487.github.io/jkopay-hw
+
 ## Codesandbox
 
 https://codesandbox.io/p/sandbox/ck93gd
